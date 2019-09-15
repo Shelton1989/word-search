@@ -41,7 +41,8 @@ export class ReaderComponent {
         const reader = new FileReader()
 
         reader.onload = (e) => {
-            const uploadedFile = e.target.result
+
+            const uploadedFile = e.target['result']
             const wordList = uploadedFile.split(/\r\n|\n/)
 
             wordList.forEach(line => {
@@ -53,7 +54,7 @@ export class ReaderComponent {
         }
 
         reader.onerror = (e) => {
-            alert(e.target.error.name)
+            alert(e.target['error'].name)
         }
 
         reader.readAsText(file)
