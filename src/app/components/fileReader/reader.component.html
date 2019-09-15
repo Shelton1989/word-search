@@ -1,0 +1,33 @@
+<div>
+    <div class="file-upload">
+        <label for="file">
+            <div class="upload-container">
+                <i class="fas fa-file-upload upload-icon"></i>
+                <h2 class="upload-text">SELECT FILE</h2>
+                <h2 *ngIf="fileName" class="upload-text">{{fileName}}</h2>
+            </div>
+        </label>
+        <input type="file" style="display: none" id='file' #file (change)="handleChange()">
+    </div>
+
+    <button class="brand-btn" (click)="validate()">VALIDATE</button>
+
+    <div class="list">
+        <ul *ngIf="words" class="words-list">
+            <li class="word-component" *ngFor="let word of words">
+                {{word.word}}
+                <span *ngIf="word.inGrid">
+                    <img width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAC0UlEQVRo3u2ZS2/TQBDHKygcOPI48fgWVPQ78JYQCD5IUT9AC6i3ggoKTQvHImihLRcOlXpId7cWEnncyoHUD0QbzoTLMhM7CKyYzNrjdYS80l9q5Mb+zWR2ZnY8NlaucpUr81rRK0elKyelL6eFL14LX7ZA30E/I+HfTbzW+5+v4pLW+kjh4MpT52UgHwCcC9KG2geDZoUrzlkH3w4+nhG+egYQ3RTgcXV3fLng+M5pK/AQAnfhoR0G8LgOhSfu5AbuaOcYwFdyAI/rKT6LF953TkC8vrcA39cmPpPN85bhI4kPrVbrOEfMV+zDh8LNnQl+x1f3ioL/bYSnbqfzvCtPwQ0OijYAM16qFBvleWug6583kq974okZPFRHpiJFUrXxQl9du6lnxMPEYge/wgV6+ITtgRX4pWYIf3n1ek/JRohZEjw2WWGfYgG+sfwXPAo/v9sbGE4uNo2UzTtZhOdRV9Zu6Of1auJ3asHuBCXvT48ifCh1n5D75Zsi4Cv1Rcr3XxHSJx48RhIef4E6xQByq5yw2cgbFuEXG0smTjigGEDK/49258jey+75ULA/f7AYgPBUEIS/9jY7vIkBnWFhQw2FfoXNGDbGIdTkCInl5ks2zxttYmoa/Vdo5ANPTKMmhSwpswwsUo0qw9lATg0PIRg6meb2uLdz8HxPKlAXqc1c2+TGg0KGGx5C+wt5mtebmBk+IG4EJ3y0gWdyP9D0jeCGx/xf26+dNTzQy4W0/c7wrtIwfAI5b3wmBotPjsih/jD13BRnlUUbAMfbW5lmQzirLMwATz1meXkBN1stwICNLb01zjjclZv2pnFynW24++eQN21mMg0bNs8PTK8wq8wjO0Gu/5Z5wxrNTWHchwWGo0hhnse0bf1dGVbHqO1op4BvY3tgXGHzWNhk4dAJ5zbYs+PBIzrZdSN1RCA/4TVsibGrHInXrOUq13+wfgEDEhPzH4eBAQAAAABJRU5ErkJggg==">
+                </span>
+                <span *ngIf="word.inGrid === false">
+                    <img width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAC7klEQVRo3u1Zy27TQBSNeC1Y8ljx+AFWyHjc7CKPKWLBMiqCJWvWFJB4Sm33gCjiExCwoK0ESPwDqHwAoSvSIlE7xqFNh3unSaCuG88djx+gXOmqSTOJzxnfx5nrWm1sYxtbZhPN5v6Qs3qHs1sd13kZcPY58Nh3+PtL+vbrZfwM14SeMyHu1faVDjyctE8BuDkAtwIuiP41cJ3ZsOGcLBy4f/HscZ/bzwBEVwN43Lu+x56uN6xjhYCHHb8CF10zADzuqz53LucX55Z10OfseQ7AdzhcYx6vZRb8JetwwJ2lvMEP3WOLeE1jO18o+KE770XzzKHsCVtA2OwZTpDc2RKW21fLAv8nJ+wpLfDrnB2FH2iXTQArnlaJ7dd5UQXvcOcJrcNCdyQ1KW9ChNevKQOSa+E7lGb307NOU5rVHAX8xtsFIXo9Ec3eTV0fPbgpxOam2PjwTgSTdXUSIDvUyiaILKlTKOAHlkJiAH5gRBIrKBrTwwdUJSUU/gYkDd5HD2/vBg//S1pLCj33HEslgHKXkmDR/endwGJ3Ir7zwzUzd4gd2p5WaVyvqFViFAlj4GU1Yi8Umhdb1il1iSS2ehKsCfDbbn9SIaAtlRNJGAMvva1CINMhRZKI77q8G1tZwaNH+RPAmE8koNYnTBBYywQ+LYSykWjnl8RJ4CFsEpNYm4RCEmuV0RGlUqVPGC2j5EamUOeNkXDZjXQpAUOnqkqJDrdtVTHX0hZzI0pl/E5IMXdeWVZ/UZ7moXTVktMKdX5AgggeE3jmXz7QRKFbP0E7UsJEoDJHSo89Ip+Jf1yoH6nIoX5Ve26Ks8rSxyoua2YdbM2XN42wHxt5eAEkXpdAYEE0GgfMDXdh4Fog+DfGhrs7xusFVCYMG2M7v8fEbiqX6uSyb5kTljI3xXEfNhgD4COs81i2i3/IB92xLztaGsBbKA/IHTaXx08gsnDohHMb1Ox48Oif7Lp9x9cf5WcgiVFVVuIx69jG9h/Yb0E1JZjPHIDkAAAAAElFTkSuQmCC">
+                </span>
+                <!-- <ng-template #notInGrid>
+                    <span>
+                        <img width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAC7klEQVRo3u1Zy27TQBSNeC1Y8ljx+AFWyHjc7CKPKWLBMiqCJWvWFJB4Sm33gCjiExCwoK0ESPwDqHwAoSvSIlE7xqFNh3unSaCuG88djx+gXOmqSTOJzxnfx5nrWm1sYxtbZhPN5v6Qs3qHs1sd13kZcPY58Nh3+PtL+vbrZfwM14SeMyHu1faVDjyctE8BuDkAtwIuiP41cJ3ZsOGcLBy4f/HscZ/bzwBEVwN43Lu+x56uN6xjhYCHHb8CF10zADzuqz53LucX55Z10OfseQ7AdzhcYx6vZRb8JetwwJ2lvMEP3WOLeE1jO18o+KE770XzzKHsCVtA2OwZTpDc2RKW21fLAv8nJ+wpLfDrnB2FH2iXTQArnlaJ7dd5UQXvcOcJrcNCdyQ1KW9ChNevKQOSa+E7lGb307NOU5rVHAX8xtsFIXo9Ec3eTV0fPbgpxOam2PjwTgSTdXUSIDvUyiaILKlTKOAHlkJiAH5gRBIrKBrTwwdUJSUU/gYkDd5HD2/vBg//S1pLCj33HEslgHKXkmDR/endwGJ3Ir7zwzUzd4gd2p5WaVyvqFViFAlj4GU1Yi8Umhdb1il1iSS2ehKsCfDbbn9SIaAtlRNJGAMvva1CINMhRZKI77q8G1tZwaNH+RPAmE8koNYnTBBYywQ+LYSykWjnl8RJ4CFsEpNYm4RCEmuV0RGlUqVPGC2j5EamUOeNkXDZjXQpAUOnqkqJDrdtVTHX0hZzI0pl/E5IMXdeWVZ/UZ7moXTVktMKdX5AgggeE3jmXz7QRKFbP0E7UsJEoDJHSo89Ip+Jf1yoH6nIoX5Ve26Ks8rSxyoua2YdbM2XN42wHxt5eAEkXpdAYEE0GgfMDXdh4Fog+DfGhrs7xusFVCYMG2M7v8fEbiqX6uSyb5kTljI3xXEfNhgD4COs81i2i3/IB92xLztaGsBbKA/IHTaXx08gsnDohHMb1Ox48Oif7Lp9x9cf5WcgiVFVVuIx69jG9h/Yb0E1JZjPHIDkAAAAAElFTkSuQmCC">
+                    </span>
+                </ng-template> -->
+            </li>
+        </ul>
+    </div>
+</div>

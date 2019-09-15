@@ -1,0 +1,16 @@
+<div>
+    <div class="grid" *ngIf="grid.length !== 0; else instructions">
+        <div class="grid-line" *ngFor="let line of grid">
+            <p class="grid-letter" *ngFor="let letter of line">{{letter}}</p>
+        </div>
+        <!-- <div *ngIf="instructions && !grid.length" >
+            <p>{{instructions}}</p>
+        </div> -->
+    </div>
+    <ng-template #instructions>
+        <div class="grid">
+            <p>Please click the generate button below.</p>
+        </div>
+    </ng-template>
+    <button class="brand-btn" (click)="generate()">GENERATE</button>
+</div>
